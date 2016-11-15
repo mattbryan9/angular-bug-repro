@@ -2,7 +2,6 @@ import { Component, Input, Output, OnInit, EventEmitter, ChangeDetectionStrategy
 
 @Component({
     selector: 'panel',
-    styles: [require('./panel.component.scss').toString()],
     template: require('./panel.component.html'),
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
