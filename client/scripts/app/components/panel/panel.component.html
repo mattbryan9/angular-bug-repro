@@ -1,0 +1,28 @@
+
+<div class="header" *ngIf="!hideHeader" (click)="scrollToTop()" [class.pointer]="collapsable">
+    <div class="toolbar-tools">
+        <button button class="icon-button dark-hover" *ngIf="collapsable!==false" (click)="toggleState()">
+            <i icon [ngClass]="{'yo-chevron-top': state === 'opened', 'yo-chevron-bottom': state === 'closed'}"></i>
+        </button>
+        <span flex *ngIf="titleCenter"></span>
+        <h2 [innerHTML]="title"></h2>
+        <span flex></span>
+        <ng-content select="[tools]"></ng-content>
+        <button button class="icon-button dark-hover" [class.absolute]="titleCenter" (click)="onCloseClick($event)" *ngIf="closable!==false" tooltip="close" tooltipPlacement="bottom">
+            <i icon class="yo-close"></i>
+        </button>
+    </div>
+</div>
+<div *ngIf="height>0" flex layout="column" [style.height]="height+'px'" class="body {{bodyClass}}" [class.topradius]="hideHeader" [class.padding]="padding===true" [class.scrollable]="scrollable===true" [class.has-footer]="hideFooter===false">
+    <div>
+        <ng-content select="[scroll]"></ng-content>
+    </div>
+</div>
+
+<div *ngIf="!height || height==='100%'" [style.height]=" height==='100%' ? '100%':'inherit'" flex layout="column"  class="body {{bodyClass}}"  [class.padding]="padding===true" [class.topradius]="hideHeader" [class.scrollable]="scrollable===true" [class.has-footer]="hideFooter===false">
+    <ng-content flex></ng-content>
+</div>
+
+<div *ngIf="!hideFooter && state!=='closed'" class="footer" layout="column">
+    <ng-content select="[footer]"></ng-content>
+</div>
