@@ -47,22 +47,12 @@ export class PanelComponent implements OnInit {
         this.close.emit(null);
     }
 
-    scrollToTop() {
-        if (this.slimscroll) {
-            this.slimscroll.scrollToTop();
-        }
-    }
-
     setPanelStyle(property: string, value: string) {
         this.renderer.setElementStyle(this.elementRef.nativeElement, property, value);
     }
 
     isOpen() {
         return this.state === 'opened';
-    }
-
-    onResize() {
-        this.resized.emit(this.getHeight());
     }
 
     toggleState() {
